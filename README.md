@@ -3,11 +3,13 @@
 This is a very high throughput channel for Flume that enables use of Flume as a *high-speed* and *reliable* Kafka consumer.
 
 
-*How fast does it go ?*
-It clocks around 360 MB/s with a single Null Sink (fastest sink) attached to it using 1000 byte events. With slower sinks it will run as fast as the sink can go. In contrast, the Kafka Source when configured with a Memory channel and Null sink can deliver about 150 MB/s. For reliabile recovery from Flume agent crashes, however, the File channel will be required. With a single disk, File channel can deliver almost 40 MB/s. 
+**How fast does it go ?**
 
+It clocks around 360 MB/s with a single Null Sink (fastest sink) attached to it using 1000 byte events. With slower sinks it will run as fast as the sink can go. 
 
-Flume when configured a Kafka source and memory channel deliver around 150 MB/s thoughput with a single source and single NullSink. 
+In contrast, the Kafka Source when configured with a Memory channel and Null sink can deliver about 150 MB/s. For reliabile recovery from Flume agent crashes, however, the File channel will be required. With a single disk, File channel can deliver almost 40 MB/s. 
+
+Flume when configured with a Kafka source and memory channel delivers around 150 MB/s thoughput with a single source and single NullSink. 
 
 
 **Why is it reliable ?**
@@ -19,13 +21,13 @@ Flume when configured a Kafka source and memory channel deliver around 150 MB/s 
 **What makes it so fast and efficient ?**
 
 This channel differs from the traditional Flume channels in two ways:
-  - Flume Sources cannot be used to feed data to it. It procures data from Kafka.
   - It does not buffer any events. It enables the Flume sinks to pull their data from Kafka.
+  - Flume Sources cannot be used to feed data to it as it procures data from Kafka directly.
 
 This essentially means that the sinks acquire data directly from Kafka without intermediaries. A traditional Flume configuration to pull data from Kafka, a Kafka source would first pull the events from Kafka broker and then buffer it into the chosen Flume channel (like File channel) and finally a sink(such as HDFS or Hive sink), would then drain events from this channel. The efficiency is gained by side stepping the additional steps and synchronization between sources, channels and sinks. Combined with lack of bufferring this translates to reduced consumption of memory, disk and CPU.
 
 
-**Universal Kafka consumer**
+**Flume as a universal Kafka consumer**
 
   Any of the standard Flume sinks can be used with this channel. Since Flume comes with a wide variety of well tested sinks that  deliver to a many different destinations, this channel allows Flume to be used as an out-of-the-box  "universal" Kafka consumer.
 
