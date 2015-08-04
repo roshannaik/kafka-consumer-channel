@@ -1,6 +1,6 @@
 # A "Kafka Consumer"-Channel for Flume
 
-This is a very high throughput channel for Flume that enables use of Flume as a *high-speed* *reliable* Kafka consumer.
+This is a very high throughput channel for Flume that enables use of Flume as a *high-speed* and *reliable* Kafka consumer.
 
 
 *How fast does it go ?*
