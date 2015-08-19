@@ -36,7 +36,7 @@ This essentially means that the sinks acquire data directly from Kafka without i
 
 - It can only pull events from Kafka. Other Flume channels work with any of Flume Sources. This channel does not accept any sources. It is desgined specifically for consuming data from Kafka.
 - Flume sources provide some flexiblity like dropping events or adding additional headers to incoming events via interceptors. Currently there is no support for interceptors.
-
+- Currently in early beta.. works with only 1 sink. Needs some fixes to allow multiple sinks.
 
 **How is it different than the Kafka channel that is already included in Flume ?**
 
