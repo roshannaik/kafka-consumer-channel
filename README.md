@@ -39,7 +39,7 @@ This essentially means that the sinks acquire data directly from Kafka without i
 
 **How is it different than the Kafka channel that is already included in Flume ?**
 
-  The Kafka channel that is built into Flume serves a different use case. It provides an alternative to the existing channels  which buffer locally. Events enter the Flume process via the source, get pushed to a Kafka cluster by the Kafka channel, then come back to the Flume process when the sink is ready to drain. In essence, it uses a Kafka cluster as a reliable external distributed buffer instead of bufferring on local disks or local memory. It is not intended to make Flume behave as a Kafka consumer. 
+  The Kafka channel that is built into Flume serves a different use case. It uses a Kafka cluster as a reliable external distributed buffer instead of bufferring on local disks or local memory. It is not intended to make Flume behave as a Kafka consumer. 
    
 
 **Sample Flume Config**
