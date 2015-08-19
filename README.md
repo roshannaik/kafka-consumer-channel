@@ -41,3 +41,29 @@ This essentially means that the sinks acquire data directly from Kafka without i
 
   The Kafka channel that is built into Flume serves a different use case. It provides an alternative to the existing channels  which buffer locally. Events enter the Flume process via the source, get pushed to a Kafka cluster by the Kafka channel, then come back to the Flume process when the sink is ready to drain. In essence, it uses a Kafka cluster as a reliable external distributed buffer instead of bufferring on local disks or local memory. It is not intended to make Flume behave as a Kafka consumer. 
    
+
+**Sample Flume Config**
+
+```
+a1.channels = c1
+
+# Configure the channel
+a1.channels.c1.type = org.apache.flume.channel.KChannel
+a1.channels.c1.zookeeperConnect = xyz.domain.com:2181
+a1.channels.c1.transactionCapacity = 1000
+a1.channels.c1.topic = parts_4_1k
+a1.channels.c1.groupId = group1
+a1.channels.c1.sink.count = 1
+
+# Set properties for underlying Kafka consumer API
+a1.channels.c1.kafka.auto.offset.reset = smallest
+a1.channels.c1.kafka.consumer.timeout.ms = 100
+a1.channels.c1.kafka.fetch.message.max.bytes = 2097152
+a1.channels.c1.kafka.socket.receive.buffer.bytes = 2097152
+a1.channels.c1.kafka.num.consumer.fetchers = 1
+a1.channels.c1.kafka.auto.commit.enable = false
+
+
+#... configire a sink .. but no source 
+
+```
