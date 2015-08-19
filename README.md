@@ -7,7 +7,7 @@ This is a very high throughput channel for Flume that enables use of Flume as a 
 
 It clocks around 360 MB/s with a single Null Sink (fastest sink) attached to it using 1000 byte events. With slower sinks it will run as fast as the sink can go. 
 
-In contrast, the Kafka Source when configured with a Memory channel and a Null sink can deliver about 150 MB/s. For reliabile recovery from Flume agent crashes, however, the File channel will be required. With a single disk, File channel can deliver almost 40 MB/s. 
+In contrast, the Kafka Source when configured with a Memory channel and a Null sink can deliver about 150 MB/s. For reliabile recovery from Flume agent crashes, however, the File channel will be required. With a single disk, File channel can deliver only about 40 MB/s. 
 
 
 
